@@ -1,0 +1,9 @@
+.PHONY: run build test race lint fmt docker-up docker-down
+run: ; go run ./cmd/server
+build: ; go build ./cmd/server
+test: ; go test ./...
+race: ; go test -race ./...
+fmt: ; gofmt -w $$(find . -name '*.go' -not -path './vendor/*')
+lint: ; go vet ./...
+docker-up: ; docker compose up --build
+docker-down: ; docker compose down
